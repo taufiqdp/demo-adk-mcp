@@ -1,3 +1,6 @@
+from contextlib import AsyncExitStack
+from typing import Tuple
+
 from dotenv import load_dotenv
 from google.adk.agents import Agent
 
@@ -6,7 +9,7 @@ from agent.client import Client
 load_dotenv()
 
 
-async def create_agent():
+async def create_agent() -> Tuple[Agent, AsyncExitStack]:
     client = Client()
 
     await client.connect_to_server(
@@ -15,7 +18,7 @@ async def create_agent():
         args=[
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            "D:\\Code\\mcp\\demo-adk-mcp",
+            "D:\\Code\\mcp\\demo-adk-mcp",  # replace with your directory
         ],
     )
 
@@ -25,7 +28,6 @@ async def create_agent():
         args=["mcp-server-sqlite", "--db-path", "mydata.db"],
     )
 
-    print("Load tools")
     tools = await client.get_tools()
 
     for tool in tools:
@@ -44,6 +46,7 @@ async def create_agent():
         "1. **Select the right tool.** Choose the most efficient tool for the task. "
         "2. **Be concise.** Output only what is required unless instructed otherwise.",
     )
+
     exit_stack = client.exit_stack
     return root_agent, exit_stack
 
