@@ -32,8 +32,13 @@ A simple agent built with Google ADK and MCP.
    You can get your Gemini API key from [AI Studio](https://aistudio.google.com/app/apikey).
 
 4. Run the agent
+
    ```bash
-   uv run adk web
+   uv run adk web --no-reload # for Windows
+
+   uv run adk web # for Linux and MacOS
    ```
+
+   > ℹ️ Windows users need to use the `--no-reload` flag due to this issue: [https://github.com/google/adk-python/issues/387](https://github.com/google/adk-python/issues/387)
 
 ##
