@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from google.adk.agents import Agent
 
 from agent.client import Client
+from agent.prompt import INSTRUCTION
 
 load_dotenv()
 
@@ -18,14 +19,14 @@ async def create_agent() -> Tuple[Agent, AsyncExitStack]:
         args=[
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            "D:\\Code\\mcp\\demo-adk-mcp",  # replace with your directory
+            "D:\\Code\\mcp\\demo-adk-mcp\\agent\\data",  # replace with your directory
         ],
     )
 
     await client.connect_to_server(
         server_id="sqlite",
         command="uvx",
-        args=["mcp-server-sqlite", "--db-path", "mydata.db"],
+        args=["mcp-server-sqlite", "--db-path", "agent/data/mydata.db"],
     )
 
     tools = await client.get_tools()
@@ -39,12 +40,7 @@ async def create_agent() -> Tuple[Agent, AsyncExitStack]:
         name="system_agent",
         model="gemini-2.0-flash",
         tools=tools,
-        instruction="You are a skilled system agent with access to the file system and an SQLite database. "
-        "Your job is to manage, query, and manipulate files, directories, and database records precisely using the tools provided. "
-        "You always allow to access allowed directory. "
-        "Use the tools effectively to accomplish user requests. Always follow these steps: "
-        "1. **Select the right tool.** Choose the most efficient tool for the task. "
-        "2. **Be concise.** Output only what is required unless instructed otherwise.",
+        instruction=INSTRUCTION,
     )
 
     exit_stack = client.exit_stack
