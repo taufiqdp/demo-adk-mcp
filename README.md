@@ -39,6 +39,6 @@ A simple agent built with Google ADK and MCP.
    uv run adk web # for Linux and MacOS
    ```
 
-   > ℹ️ Windows users need to use the `--no-reload` flag due to this issue: [https://github.com/google/adk-python/issues/387](https://github.com/google/adk-python/issues/387)
+   > ⚠️ Windows users need to use the `--no-reload` flag due to this issue: [https://github.com/google/adk-python/issues/387](https://github.com/google/adk-python/issues/387)
 
 ##
