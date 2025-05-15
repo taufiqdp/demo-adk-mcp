@@ -29,9 +29,10 @@ async def create_agent() -> Tuple[Agent, AsyncExitStack]:
         args=["mcp-server-sqlite", "--db-path", "agent/data/mydata.db"],
     )
 
-    await client.connect_to_sse_server(
-        server_id="calc", url="http://localhost:8001/sse"
-    )
+    # Example connect to SSE server
+    # await client.connect_to_sse_server(
+    #     server_id="test", url="http://localhost:8001/sse"
+    # )
 
     tools = await client.get_tools()
 
