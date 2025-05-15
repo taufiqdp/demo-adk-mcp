@@ -13,7 +13,7 @@ load_dotenv()
 async def create_agent() -> Tuple[Agent, AsyncExitStack]:
     client = Client()
 
-    await client.connect_to_server(
+    await client.connect_to_stdio_server(
         server_id="filesystem",
         command="npx",
         args=[
@@ -23,10 +23,14 @@ async def create_agent() -> Tuple[Agent, AsyncExitStack]:
         ],
     )
 
-    await client.connect_to_server(
+    await client.connect_to_stdio_server(
         server_id="sqlite",
         command="uvx",
         args=["mcp-server-sqlite", "--db-path", "agent/data/mydata.db"],
+    )
+
+    await client.connect_to_sse_server(
+        server_id="calc", url="http://localhost:8001/sse"
     )
 
     tools = await client.get_tools()
