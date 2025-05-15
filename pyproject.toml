@@ -1,7 +1,10 @@
 [project]
 name = "demo-adk-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "A simple agent built with Google ADK and MCP"
+authors = [
+    { name = "Taufiq Dwi Purnomo", email = "topexdw@gmail.com" },
+]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
