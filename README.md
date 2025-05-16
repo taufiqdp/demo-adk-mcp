@@ -6,6 +6,11 @@ A simple agent built with Google ADK and MCP.
 - [Node.js](https://nodejs.org/en/download/)
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
+### MCP Server
+
+- [Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)
+- [SQLite](https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite)
+
 ## How to run
 
 1. Clone the repository
