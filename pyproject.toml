@@ -22,4 +22,4 @@ dev = [
 ]
 
 [tool.uv.sources]
-google-adk = { git = "https://github.com/google/adk-python.git" }
+google-adk = { git = "https://github.com/google/adk-python.git", rev = "e487d6d3cca8da3f1415220a94c069f33a4ea766" }
